@@ -11,7 +11,7 @@ function getFilestubFromPath pPath
 end getFilestubFromPath
 
 function assetsFolder
-      switch the environment
+   switch the environment
       case "development"
          return "Z:/Data/Work/My Programs/LiveCode/DemPowerAssets" -- on Z: so included in CreateSynchronicity backups
          break
@@ -258,7 +258,7 @@ command createVideoRect
    local rectBounds
    set the style of the templateGraphic to "rectangle"
    set  the name of the templateGraphic to "videoRect"
-      -- work out video rect (video is 664 x 498)
+   -- work out video rect (video is 664 x 498)
    put (width of this stack - 664) / 2 into rectBounds["left"]
    if there is a field "cardTitle" of this card then
       put the bottom of field "cardTitle" + 10 into rectBounds["top"] 
@@ -271,3 +271,18 @@ command createVideoRect
    create graphic
    reset templateGraphic
 end createVideoRect
+
+command setSize pName, pType
+   switch pType
+      case "button"
+         set the width of button pName to the  formattedWidth of button pName
+         set the height of button pName to the  formattedHeight of button pName
+         break
+      case "field"
+         set the width of field pName to the  formattedWidth of field  pName
+         set the height of field pName to the  formattedHeight of field  pName
+         break
+      default
+         answer "Utilities library, setSize command: Object type not coded!"
+   end switch
+end setSize
