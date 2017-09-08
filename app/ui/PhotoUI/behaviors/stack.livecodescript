@@ -2,3 +2,15 @@
 on preOpenStack
    setStackTextProps
 end preOpenStack
+
+function getPhoto pActivityID
+   #for this test pActivityID = "S1_1A1" (Section 1.1, Activity1)
+   local tFilePath, tPhotoExists
+   put   assetsFolder() & "/User/Photos/" & pActivityID & ".jpg" into tFilePath
+   if there is a file tFilePath then
+      put "y" into tPhotoExists
+   else
+      put "n" into tPhotoExists
+   end if
+   return tFilePath, tPhotoExists
+end getPhoto
