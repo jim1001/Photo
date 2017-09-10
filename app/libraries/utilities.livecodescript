@@ -272,10 +272,10 @@ command createVideoRect
    reset templateGraphic
 end createVideoRect
 
-command setSize pLongID
+command setObjSize pLongID
    #Usage: eg. setSize the long id of button "myButton"
    #Ref: http://forums.livecode.com/viewtopic.php?f=7&t=12392
    #Use with buttons, fields. Not tested with other object types
    set the width of pLongID to the  formattedWidth of pLongID
    set the height of pLongID to the  formattedHeight of pLongID
-end setSize
+end setObjSize

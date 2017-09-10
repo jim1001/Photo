@@ -1,7 +1,11 @@
 ﻿script "card_noPhotoExists Behavior"
 on preOpenCard
-   set the width of field "noPhoto" to the  formattedWidth  of field "noPhoto"
-   set the height of field "noPhoto" to the  formattedHeight  of field "noPhoto"
-   set the width of button "takePhoto" to the  formattedWidth  of button "takePhoto"
-   set the height of button "takePhoto" to the  formattedHeight  of button "takePhoto"
+   #setObjSize the long id of field "noPhoto"
+   #setObjSize the long id of button "takePhoto"
+   #setObjSize the long id of button "takePhoto"
 end preOpenCard
+
+command takePhotoPressed
+   set takePhoto of card "PhotoExists" to "y"
+   go to card "PhotoExists"
+end takePhotoPressed
