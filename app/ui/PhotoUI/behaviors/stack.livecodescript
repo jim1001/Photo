@@ -8,7 +8,7 @@ function getPhoto pActivityID
    #See the code for the expected path of the file for a given activity
    #for this test pActivityID = "S1_1A1" (Section 1.1, Activity1)
    local tFilePath, tPhotoExists
-   put assetsFolder() & "/User/Photos/" & pActivityID & ".jpg" into tFilePath
+   put "/sdcard/JimsApps/Photo/" & pActivityID & ".jpg" into tFilePath
    if there is a file tFilePath then
       put "y" into tPhotoExists
    else
