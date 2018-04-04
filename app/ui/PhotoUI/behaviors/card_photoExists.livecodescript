@@ -14,20 +14,25 @@ on preOpenCard
    if there is a image "myPhoto" then
       delete  image "myPhoto"
    end if
-   if the takePhoto of this card is "n" then
-      create image "image"
-      set the rect of image "image" to sRect
-      set the filename of  image "image" to  the photoPath of this card 
-      set the visible  of  image "image" to true
-   end if   
-   
+   switch the takePhoto of this card
+      case "n"
+         create image "image"
+         set the rect of image "image" to sRect
+         set the filename of  image "image" to  the photoPath of this card 
+         set the visible  of  image "image" to true
+         break
+      case "y"
+         set the rect of the templateimage to sRect
+         set the visible  of the templateimage to true      
+         set the lockloc of the templateimage to true
+         set the name of the templateimage to "myPhoto"
+         break
+      default
+         answer "card_photoExistsBehavior: Unhandled option for takePhoto"
+   end switch
 end preOpenCard
 on openCard
    if the takePhoto of this card is "y" then
-      set the rect of the templateimage to sRect
-      set the visible  of the templateimage to true      
-      set the lockloc of the templateimage to true
-      set the name of the templateimage to "myPhoto"
       mobilePickPhoto "camera"
       answer "Export path:" && the photoPath of this card
       try
