@@ -31,18 +31,28 @@ on preOpenCard
          answer "card_photoExistsBehavior: Unhandled option for takePhoto"
    end switch
 end preOpenCard
+--
 on openCard
    if the takePhoto of this card is "y" then
       mobilePickPhoto "camera"
-      answer "Export path:" && the photoPath of this card
+      -- If photo taken OK the result is empty.
+      -- If camera times out the result is set to "cancel"
+      if the result is not empty then
+         -- Camera timed out so go back 
+         go to card "NoPhotoExists" 
+         exit openCard -- carried on to report Export error without this
+      end if
       try
          export image "myPhoto" to file the photoPath of this card as JPEG
       catch sError
          answer "Export error:" && sError
       end try
-      reset the templateimage
    end if
 end openCard
+--
+on closeCard
+         reset the templateimage
+end closeCard
 
 command deletePressed
    answer "Do you really want to erase your photo? This action cannot be undone." with "Yes" or "No" titled "Confirmation"
@@ -56,6 +66,4 @@ command deletePressed
       
       go to card "NoPhotoExists"
    end if
-   
-   
 end deletePressed
